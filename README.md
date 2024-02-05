@@ -1,1 +1,1 @@
-# yt_downloader
+Hello! This is a YouTube video downloader that allows you to search videos on a GUI and either locally or remotely download videos using socket programming. There's still a few bugs and functionalities I need to work out (as seen on the to-do list), but it works! There's a GUI and console version (intended for my phone, which can't display a GUI). Enjoy!
