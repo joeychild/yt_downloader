@@ -101,10 +101,10 @@ def options(url):
         f_opts = ctk.CTkFrame(opts)
         f_opts.pack()
 
-        server_btn = ctk.CTkButton(f_opts, 30, 30, image = ctk.CTkImage(Image.open("server.png"), size=(20,20)), text = "", command= lambda link = url : server(link))
+        server_btn = ctk.CTkButton(f_opts, 30, 30, image = ctk.CTkImage(Image.open("icons/server.png"), size=(20,20)), text = "", command= lambda link = url : server(link))
         server_btn.pack(side = "left")
         
-        download_btn = ctk.CTkButton(f_opts, 30, 30, image = ctk.CTkImage(Image.open("folder.png"), size=(20,20)), text = "", command= lambda link = url: download(link))
+        download_btn = ctk.CTkButton(f_opts, 30, 30, image = ctk.CTkImage(Image.open("icons/folder.png"), size=(20,20)), text = "", command= lambda link = url: download(link))
         download_btn.pack(side = "left")
 
         opts.focus()
@@ -114,7 +114,7 @@ def options(url):
 #server function
 def server(url):
     #download video
-    vid = download2(url, "Personal Projects/playlist")
+    vid = download2(url, "/")
 
     #start and connect socket
     ssFT = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -125,7 +125,7 @@ def server(url):
     print("connected")
 
     #clear and open video data file
-    text_file = 'Personal Projects/playlist/vid_data.txt'
+    text_file = 'vid_data.txt'
     if os.path.exists(text_file):
         os.remove(text_file)
     
@@ -184,8 +184,8 @@ def find():
     for i in range(len(results)):
         global vid
         vid = results[i]
-        urllib.request.urlretrieve(vid["thumbnails"][0], "thumbnail.png") #thumbnails
-        video = ctk.CTkButton(scroll, image=ctk.CTkImage(Image.open("thumbnail.png"), size=(160,90)), 
+        urllib.request.urlretrieve(vid["thumbnails"][0], "icons/thumbnail.png") #thumbnails
+        video = ctk.CTkButton(scroll, image=ctk.CTkImage(Image.open("icons/thumbnail.png"), size=(160,90)), 
                               width=500, height=100, 
                               text=f'{'\n'.join([vid["title"][i:i+50] for i in range(0, len(vid["title"]), 50)])}\n{vid["duration"]} | {vid["views"]}', 
                               anchor="w", command= lambda url = "youtube.com" + vid["url_suffix"] : options(url)) #buttons
@@ -219,9 +219,9 @@ def url_download():
 #search box and accompanying buttons
 search = ctk.CTkTextbox(frame, 200, 30, activate_scrollbars=False, wrap="none")
 search.pack(side = "left")
-s_btn = ctk.CTkButton(frame, 30, 30, image = ctk.CTkImage(Image.open("search.png"), size = (20, 20)), text="", command=find)
+s_btn = ctk.CTkButton(frame, 30, 30, image = ctk.CTkImage(Image.open("icons/search.png"), size = (20, 20)), text="", command=find)
 s_btn.pack(side = "left")
-set_btn = ctk.CTkButton(frame, 30, 30, image = ctk.CTkImage(Image.open("settings.png"), size = (20, 20)), text="", command=settings)
+set_btn = ctk.CTkButton(frame, 30, 30, image = ctk.CTkImage(Image.open("icons/settings.png"), size = (20, 20)), text="", command=settings)
 set_btn.pack(side = "left")
 url_btn = ctk.CTkButton(frame, 30, 30, text="URL", text_color="black", command = url_download)
 url_btn.pack(side = "left")
